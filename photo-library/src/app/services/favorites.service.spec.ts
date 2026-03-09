@@ -20,6 +20,11 @@ describe('FavoritesService', () => {
     expect(service.getAll()).toEqual([]);
   });
 
+  it('should keep localStorage empty when there are no favorites', () => {
+    const stored = JSON.parse(localStorage.getItem('photo-library-favorites') ?? '[]');
+    expect(stored).toEqual([]);
+  });
+
   it('should add and remove a favorite', () => {
     service.add(samplePhoto);
     expect(service.getAll()).toEqual([samplePhoto]);

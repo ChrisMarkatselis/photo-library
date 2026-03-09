@@ -7,6 +7,7 @@ import { Photo } from '../models/photo.model';
   providedIn: 'root',
 })
 export class PhotoService {
+  /** The base seed is for generating photo URLs with random numbers. */
   private readonly baseSeed = Math.floor(Math.random() * 1_000_000);
 
   /**

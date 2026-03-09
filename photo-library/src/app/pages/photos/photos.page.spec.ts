@@ -54,6 +54,14 @@ describe('PhotosPageComponent', () => {
     expect((favoritesService.toggle as any)).toHaveBeenCalledWith(samplePhoto);
   });
 
+  it('should add the favorited class to the icon when photo is favorited', () => {
+    (favoritesService.isFavorited as any).mockReturnValue(true);
+    fixture.detectChanges();
+
+    const icon = fixture.nativeElement.querySelector('.favorite-icon');
+    expect(icon.classList.contains('favorited')).toBe(true);
+  });
+
   it('should stop loading when photo service errors', () => {
     (photoService.getPhotos as any).mockReturnValueOnce(throwError(() => new Error('fail')));
 
