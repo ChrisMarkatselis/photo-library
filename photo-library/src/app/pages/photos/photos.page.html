@@ -1,0 +1,21 @@
+<section class="photos-page">
+  <div class="photos-grid">
+    <ng-container *ngFor="let photo of photos$ | async; trackBy: trackByPhotoId">
+      <mat-card class="photo-card" (click)="onPhotoClick(photo)">
+        <img mat-card-image [src]="photo.thumbUrl" [alt]="'Photo ' + photo.id" />
+        <mat-card-footer class="photo-footer">
+          <span>Tap to add to favorites</span>
+          <mat-icon
+            class="favorite-icon"
+            [class.favorited]="isFavorited(photo)"
+            >favorite</mat-icon
+          >
+        </mat-card-footer>
+      </mat-card>
+    </ng-container>
+  </div>
+
+  <div class="loader" *ngIf="isLoading()">
+    <mat-progress-spinner diameter="48" mode="indeterminate"></mat-progress-spinner>
+  </div>
+</section>

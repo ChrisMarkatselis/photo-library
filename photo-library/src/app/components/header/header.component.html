@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <a mat-button routerLink="/" [class.active]="activeView === 'photos'">
+    <mat-icon>image</mat-icon>
+    Photos
+  </a>
+  <a mat-button routerLink="/favorites" [class.active]="activeView === 'favorites'">
+    <mat-icon>favorite</mat-icon>
+    Favorites
+  </a>
+</mat-toolbar>

@@ -1,0 +1,37 @@
+<section class="photo-detail">
+  <ng-container *ngIf="isLoading(); else ready">
+    <div class="loading">
+      <mat-progress-spinner mode="indeterminate" diameter="64"></mat-progress-spinner>
+    </div>
+  </ng-container>
+
+  <ng-template #ready>
+    <ng-container *ngIf="errorMessage() as error">
+      <div class="error">
+        <mat-icon>error</mat-icon>
+        <p>{{ error }}</p>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!errorMessage()">
+      <ng-container *ngIf="photo() as photo">
+        <div class="image-wrapper">
+          <img [src]="photo.fullUrl" [alt]="'Photo ' + photo.id" />
+        </div>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" (click)="toggleFavorite()">
+            <mat-icon>{{ isFavorited ? 'favorite' : 'favorite_border' }}</mat-icon>
+            {{ isFavorited ? 'Remove from favorites' : 'Add to favorites' }}
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!photo()">
+        <div class="not-found">
+          <p>Photo not found.</p>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</section>

@@ -1,0 +1,25 @@
+<section class="favorites-page">
+  <ng-container *ngIf="(favorites$ | async) as favorites">
+    <div *ngIf="favorites.length; else emptyState" class="favorites-grid">
+      <a
+        class="favorite-card"
+        *ngFor="let photo of favorites; trackBy: trackByPhotoId"
+        [routerLink]="['/photos', photo.id]"
+      >
+        <mat-card>
+          <img mat-card-image [src]="photo.thumbUrl" [alt]="'Favorite ' + photo.id" />
+          <mat-card-footer>
+            <span>View</span>
+          </mat-card-footer>
+        </mat-card>
+      </a>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="empty">
+        <mat-icon>favorite_border</mat-icon>
+        <p>No favorites yet — tap a photo on the Photos page to save it.</p>
+      </div>
+    </ng-template>
+  </ng-container>
+</section>
